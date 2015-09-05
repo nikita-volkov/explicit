@@ -1,0 +1,51 @@
+name:
+  explicit
+version:
+  0.1.0
+synopsis:
+  Experimental API of explicit typeclasses
+category:
+  Control
+homepage:
+  https://github.com/nikita-volkov/explicit 
+bug-reports:
+  https://github.com/nikita-volkov/explicit/issues 
+author:
+  Nikita Volkov <nikita.y.volkov@mail.ru>
+maintainer:
+  Nikita Volkov <nikita.y.volkov@mail.ru>
+copyright:
+  (c) 2015, Nikita Volkov
+license:
+  MIT
+license-file:
+  LICENSE
+build-type:
+  Simple
+cabal-version:
+  >=1.10
+
+
+source-repository head
+  type:
+    git
+  location:
+    git://github.com/nikita-volkov/explicit.git
+
+
+library
+  hs-source-dirs:
+    library
+  default-extensions:
+    Arrows, BangPatterns, ConstraintKinds, DataKinds, DefaultSignatures, DeriveDataTypeable, DeriveFunctor, DeriveGeneric, EmptyDataDecls, FlexibleContexts, FlexibleInstances, FunctionalDependencies, GADTs, GeneralizedNewtypeDeriving, ImpredicativeTypes, LambdaCase, LiberalTypeSynonyms, MagicHash, MultiParamTypeClasses, MultiWayIf, NoImplicitPrelude, NoMonomorphismRestriction, OverloadedStrings, PatternGuards, ParallelListComp, QuasiQuotes, RankNTypes, RecordWildCards, ScopedTypeVariables, StandaloneDeriving, TemplateHaskell, TupleSections, TypeFamilies, TypeOperators, UnboxedTuples
+  default-language:
+    Haskell2010
+  other-modules:
+  exposed-modules:
+    Explicit.Prelude
+    Explicit.Functor
+    Explicit.Point
+    Explicit.Ap
+    Explicit.Applicative
+  build-depends:
+    base >= 4.6 && < 4.9
