@@ -6,17 +6,29 @@ import qualified Explicit.Point as Point
 import qualified Explicit.Ap as Ap
 
 
-type Applicative m =
-  (Functor.Functor m, Point.Point m, Ap.Ap m)
+data Applicative m =
+  Applicative !(Functor.Functor m) !(Point.Point m) !(Ap.Ap m)
 
 toFunctor :: Applicative m -> Functor.Functor m
 toFunctor =
-  \(x, _, _) -> x
+  \(Applicative x _ _) -> x
 
 toPoint :: Applicative m -> Point.Point m
 toPoint =
-  \(_, x, _) -> x
+  \(Applicative _ x _) -> x
 
 toAp :: Applicative m -> Ap.Ap m
 toAp =
-  \(_, _, x) -> x
+  \(Applicative _ _ x) -> x
+
+point :: Applicative m -> a -> m a
+point =
+  Point.point . toPoint
+
+map :: Applicative m -> (a -> b) -> (m a -> m b)
+map =
+  Functor.map . toFunctor
+
+ap :: Applicative m -> m (a -> b) -> (m a -> m b)
+ap =
+  Ap.ap . toAp

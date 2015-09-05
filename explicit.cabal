@@ -47,5 +47,6 @@ library
     Explicit.Point
     Explicit.Ap
     Explicit.Applicative
+    Explicit.Monad
   build-depends:
     base >= 4.6 && < 4.9
