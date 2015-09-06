@@ -25,10 +25,23 @@ point :: Applicative m -> a -> m a
 point =
   Point.point . toPoint
 
+ap :: Applicative m -> m (a -> b) -> (m a -> m b)
+ap =
+  Ap.ap . toAp
+
 map :: Applicative m -> (a -> b) -> (m a -> m b)
 map =
   Functor.map . toFunctor
 
-ap :: Applicative m -> m (a -> b) -> (m a -> m b)
-ap =
-  Ap.ap . toAp
+map2 :: Applicative m -> (a -> b -> c) -> (m a -> m b -> m c)
+map2 =
+  \x aToBToC mA mB -> ap x (map x aToBToC mA) mB
+
+map3 :: Applicative m -> (a -> b -> c -> d) -> (m a -> m b -> m c -> m d)
+map3 =
+  \x aToBToCToD mA mB mC ->
+    let
+      mBToCToD = map x aToBToCToD mA
+      mCToD = ap x mBToCToD mB
+      mD = ap x mCToD mC
+      in mD
