@@ -9,8 +9,8 @@ import qualified Explicit.Applicative as Applicative
 
 data Monad m =
   Monad {
-    applicative :: !(Applicative.Applicative m),
-    joinOrJoinMap :: !(Either (Join m) (JoinMap m))
+    applicativeInstance :: !(Applicative.Applicative m),
+    joinOrJoinMapInstance :: !(Either (Join m) (JoinMap m))
   }
 
 newtype Join m =
@@ -19,26 +19,22 @@ newtype Join m =
 newtype JoinMap m =
   JoinMap (forall a b. (a -> m b) -> (m a -> m b))
 
-toApplicative :: Monad m -> Applicative.Applicative m
-toApplicative =
-  \(Monad x _) -> x
-
 map :: Monad m -> (a -> b) -> (m a -> m b)
 map =
-  Applicative.map . toApplicative
+  Applicative.map . applicativeInstance
 
 point :: Monad m -> a -> m a
 point =
-  Point.point . Applicative.toPoint . toApplicative
+  Point.point . Applicative.pointInstance . applicativeInstance
 
 ap :: Monad m -> m (a -> b) -> (m a -> m b)
 ap =
-  Ap.ap . Applicative.toAp . toApplicative
+  Ap.ap . Applicative.apInstance . applicativeInstance
 
 join :: Monad m -> m (m a) -> m a
 join =
-  \m -> either (\(Join x) -> x) (\(JoinMap joinMap) -> joinMap id) (joinOrJoinMap m)
+  \m -> either (\(Join x) -> x) (\(JoinMap joinMap) -> joinMap id) (joinOrJoinMapInstance m)
 
 joinMap :: Monad m -> (a -> m b) -> (m a -> m b)
 joinMap =
-  \m -> either (\(Join join) f -> join . map m f) (\(JoinMap joinMap) -> joinMap) (joinOrJoinMap m)
+  \m -> either (\(Join join) f -> join . map m f) (\(JoinMap joinMap) -> joinMap) (joinOrJoinMapInstance m)

@@ -9,29 +9,29 @@ import qualified Explicit.Ap as Ap
 data Applicative m =
   Applicative !(Functor.Functor m) !(Point.Point m) !(Ap.Ap m)
 
-toFunctor :: Applicative m -> Functor.Functor m
-toFunctor =
+functorInstance :: Applicative m -> Functor.Functor m
+functorInstance =
   \(Applicative x _ _) -> x
 
-toPoint :: Applicative m -> Point.Point m
-toPoint =
+pointInstance :: Applicative m -> Point.Point m
+pointInstance =
   \(Applicative _ x _) -> x
 
-toAp :: Applicative m -> Ap.Ap m
-toAp =
+apInstance :: Applicative m -> Ap.Ap m
+apInstance =
   \(Applicative _ _ x) -> x
 
 point :: Applicative m -> a -> m a
 point =
-  Point.point . toPoint
+  Point.point . pointInstance
 
 ap :: Applicative m -> m (a -> b) -> (m a -> m b)
 ap =
-  Ap.ap . toAp
+  Ap.ap . apInstance
 
 map :: Applicative m -> (a -> b) -> (m a -> m b)
 map =
-  Functor.map . toFunctor
+  Functor.map . functorInstance
 
 map2 :: Applicative m -> (a -> b -> c) -> (m a -> m b -> m c)
 map2 =
