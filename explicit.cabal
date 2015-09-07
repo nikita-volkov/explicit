@@ -48,5 +48,7 @@ library
     Explicit.Ap
     Explicit.Applicative
     Explicit.Monad
+    Explicit.Instances.IO
   build-depends:
+    base-prelude == 0.1.*,
     base >= 4.6 && < 4.9
