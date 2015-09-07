@@ -47,8 +47,11 @@ library
     Explicit.Point
     Explicit.Ap
     Explicit.Applicative
+    Explicit.Alternative
+    Explicit.Empty
     Explicit.Monad
     Explicit.Instances.IO
+    Explicit.Instances.Maybe
   build-depends:
     base-prelude == 0.1.*,
     base >= 4.6 && < 4.9

@@ -4,5 +4,5 @@ module Explicit.Prelude
 )
 where
 
-import Prelude as Exports hiding (Functor(..), Applicative(..), Monad(..), map)
+import BasePrelude as Exports hiding (Functor(..), Applicative(..), Monad(..), map, ap, Alternative(..))
 
