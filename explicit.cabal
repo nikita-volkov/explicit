@@ -44,6 +44,7 @@ library
     Explicit.Prelude
     Explicit.Operations.IO
   exposed-modules:
+    Explicit.Operations
     Explicit.Classes.Functor
     Explicit.Classes.Point
     Explicit.Classes.Ap
