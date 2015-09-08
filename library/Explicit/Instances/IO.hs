@@ -22,14 +22,14 @@ sequentialAp =
 
 concurrentAp :: Ap.Ap IO
 concurrentAp =
-  Ap.Ap $ \ioAToB ioA -> (Base.=<<) (\ioAToB -> Ap.ap sequentialAp ioAToB ioA) (fork ioAToB)
+  Ap.Ap $ \ioAToB ioA -> (Base.=<<) (\ioAToB -> Ap.ap sequentialAp ioAToB ioA) (duplicate ioAToB)
 
   
 -- ** Utilities
 -------------------------
 
-fork :: IO a -> IO (IO a)
-fork =
+duplicate :: IO a -> IO (IO a)
+duplicate =
   \ioA ->
     Base.newEmptyMVar & 
     (Base.=<<) (\var -> Base.forkIO (ioA & (Base.=<<) (putMVar var)) & 
