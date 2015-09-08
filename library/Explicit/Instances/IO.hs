@@ -6,6 +6,8 @@ import qualified Explicit.Classes.Functor as Functor
 import qualified Explicit.Classes.Ap as Ap
 import qualified Explicit.Classes.Applicative as Applicative
 import qualified Explicit.Classes.Monad as Monad
+import qualified Explicit.Classes.Semigroup as Semigroup
+import qualified Explicit.Utilities.IO as IO
 
 
 functor :: Functor.Functor IO
@@ -18,19 +20,17 @@ joinMap =
 
 sequentialAp :: Ap.Ap IO
 sequentialAp =
-  Ap.Ap $ \ioAToB ioA -> (Base.=<<) (\aToB -> Base.fmap aToB ioA) ioAToB
+  Ap.Ap functor IO.sequentialAp
 
 concurrentAp :: Ap.Ap IO
 concurrentAp =
-  Ap.Ap $ \ioAToB ioA -> (Base.=<<) (\ioAToB -> Ap.ap sequentialAp ioAToB ioA) (duplicate ioAToB)
+  Ap.Ap functor IO.concurrentAp
 
-  
--- ** Utilities
--------------------------
+sequentialSemigroup :: Semigroup.Semigroup a -> Semigroup.Semigroup (IO a)
+sequentialSemigroup =
+  Ap.map2 sequentialAp
 
-duplicate :: IO a -> IO (IO a)
-duplicate =
-  \ioA ->
-    Base.newEmptyMVar & 
-    (Base.=<<) (\var -> Base.forkIO (ioA & (Base.=<<) (putMVar var)) & 
-    Base.fmap (const (takeMVar var)))
+concurrentSemigroup :: Semigroup.Semigroup a -> Semigroup.Semigroup (IO a)
+concurrentSemigroup =
+  Ap.map2 concurrentAp
+

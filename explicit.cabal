@@ -41,8 +41,9 @@ library
   default-language:
     Haskell2010
   other-modules:
-  exposed-modules:
     Explicit.Prelude
+    Explicit.Utilities.IO
+  exposed-modules:
     Explicit.Classes.Functor
     Explicit.Classes.Point
     Explicit.Classes.Ap
@@ -50,6 +51,7 @@ library
     Explicit.Classes.Alternative
     Explicit.Classes.Empty
     Explicit.Classes.Monad
+    Explicit.Classes.Semigroup
     Explicit.Instances.IO
     Explicit.Instances.Maybe
   build-depends:
