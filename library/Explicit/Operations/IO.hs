@@ -1,4 +1,4 @@
-module Explicit.Utilities.IO where
+module Explicit.Operations.IO where
 
 import Explicit.Prelude
 import qualified BasePrelude as Base

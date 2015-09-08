@@ -42,7 +42,7 @@ library
     Haskell2010
   other-modules:
     Explicit.Prelude
-    Explicit.Utilities.IO
+    Explicit.Operations.IO
   exposed-modules:
     Explicit.Classes.Functor
     Explicit.Classes.Point

@@ -7,7 +7,7 @@ import qualified Explicit.Classes.Ap as Ap
 import qualified Explicit.Classes.Applicative as Applicative
 import qualified Explicit.Classes.Monad as Monad
 import qualified Explicit.Classes.Semigroup as Semigroup
-import qualified Explicit.Utilities.IO as IO
+import qualified Explicit.Operations.IO as IO
 
 
 functor :: Functor.Functor IO
