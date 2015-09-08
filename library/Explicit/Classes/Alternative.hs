@@ -1,11 +1,11 @@
-module Explicit.Alternative where
+module Explicit.Classes.Alternative where
 
 import Explicit.Prelude
-import qualified Explicit.Functor as Functor
-import qualified Explicit.Applicative as Applicative
-import qualified Explicit.Alt as Alt
-import qualified Explicit.Empty as Empty
-import qualified Explicit.Point as Point
+import qualified Explicit.Classes.Functor as Functor
+import qualified Explicit.Classes.Applicative as Applicative
+import qualified Explicit.Classes.Alt as Alt
+import qualified Explicit.Classes.Empty as Empty
+import qualified Explicit.Classes.Point as Point
 
 
 data Alternative m =

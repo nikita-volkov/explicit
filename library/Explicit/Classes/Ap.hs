@@ -1,4 +1,4 @@
-module Explicit.Ap where
+module Explicit.Classes.Ap where
 
 import qualified Explicit.Prelude as Prelude
 

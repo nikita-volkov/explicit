@@ -1,7 +1,7 @@
-module Explicit.Alt where
+module Explicit.Classes.Alt where
 
 import Explicit.Prelude
-import qualified Explicit.Ap as Ap
+import qualified Explicit.Classes.Ap as Ap
 
 
 newtype Alt m =

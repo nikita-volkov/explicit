@@ -1,4 +1,4 @@
-module Explicit.Functor where
+module Explicit.Classes.Functor where
 
 import qualified Explicit.Prelude as Prelude
 

@@ -1,4 +1,4 @@
-module Explicit.Empty where
+module Explicit.Classes.Empty where
 
 import Explicit.Prelude
 

@@ -1,10 +1,10 @@
-module Explicit.Monad where
+module Explicit.Classes.Monad where
 
 import Explicit.Prelude
-import qualified Explicit.Functor as Functor
-import qualified Explicit.Point as Point
-import qualified Explicit.Ap as Ap
-import qualified Explicit.Applicative as Applicative
+import qualified Explicit.Classes.Functor as Functor
+import qualified Explicit.Classes.Point as Point
+import qualified Explicit.Classes.Ap as Ap
+import qualified Explicit.Classes.Applicative as Applicative
 
 
 data Monad m =

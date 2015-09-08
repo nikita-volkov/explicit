@@ -1,4 +1,4 @@
-module Explicit.Point where
+module Explicit.Classes.Point where
 
 import qualified Explicit.Prelude as Prelude
 

@@ -2,9 +2,9 @@ module Explicit.Instances.Maybe where
 
 import Explicit.Prelude hiding (empty, alt)
 import qualified BasePrelude as Base
-import qualified Explicit.Empty as Empty
-import qualified Explicit.Alt as Alt
-import qualified Explicit.Alternative as Alternative
+import qualified Explicit.Classes.Empty as Empty
+import qualified Explicit.Classes.Alt as Alt
+import qualified Explicit.Classes.Alternative as Alternative
 
 
 empty :: Empty.Empty Maybe

@@ -2,10 +2,10 @@ module Explicit.Instances.IO where
 
 import Explicit.Prelude
 import qualified BasePrelude as Base
-import qualified Explicit.Functor as Functor
-import qualified Explicit.Ap as Ap
-import qualified Explicit.Applicative as Applicative
-import qualified Explicit.Monad as Monad
+import qualified Explicit.Classes.Functor as Functor
+import qualified Explicit.Classes.Ap as Ap
+import qualified Explicit.Classes.Applicative as Applicative
+import qualified Explicit.Classes.Monad as Monad
 
 
 functor :: Functor.Functor IO
