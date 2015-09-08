@@ -1,7 +1,6 @@
 module Explicit.Instances.IO where
 
 import Explicit.Prelude
-import qualified BasePrelude as Base
 import qualified Explicit.Classes.Functor as Functor
 import qualified Explicit.Classes.Ap as Ap
 import qualified Explicit.Classes.Applicative as Applicative
@@ -12,11 +11,11 @@ import qualified Explicit.Operations.IO as IO
 
 functor :: Functor.Functor IO
 functor =
-  Functor.Functor Base.fmap
+  Functor.Functor IO.map
 
 joinMap :: Monad.JoinMap IO
 joinMap =
-  Monad.JoinMap (Base.=<<)
+  Monad.JoinMap IO.joinMap
 
 sequentialAp :: Ap.Ap IO
 sequentialAp =
