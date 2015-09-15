@@ -4,6 +4,7 @@ import Explicit.Prelude hiding (empty, alt)
 import qualified BasePrelude as Base
 import qualified Explicit.Classes.Empty as Empty
 import qualified Explicit.Classes.Alt as Alt
+import qualified Explicit.Classes.Functor as Functor
 import qualified Explicit.Classes.Alternative as Alternative
 
 
@@ -18,3 +19,9 @@ alt =
 -- alternative :: Alternative.Alternative Maybe
 -- alternative =
 --   Alternative.Alternative empty alt
+
+functor :: Functor.Functor Maybe
+functor =
+  Functor.Functor $ \f -> \case
+    Nothing -> Nothing
+    Just x -> Just (f x)
