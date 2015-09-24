@@ -51,6 +51,9 @@ type Reduce m a b =
 type Foldr m a =
   forall b. (a -> b -> b) -> b -> Reduce m a b
 
+type Producer a =
+  forall b. (a -> b -> b) -> b -> b
+
 concat :: Append a -> a -> Foldr m a -> Concat m a
 concat =
   \append def foldr -> foldr append def
