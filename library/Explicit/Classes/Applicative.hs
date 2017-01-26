@@ -8,10 +8,13 @@ import qualified Explicit.Classes.Ap as Ap
 
 data Applicative m =
   Applicative {
-    functorInstance :: Functor.Functor m,
     pointInstance :: Point.Point m,
     apInstance :: Ap.Ap m
   }
+
+functorInstance :: Applicative m -> Functor.Functor m
+functorInstance =
+  Ap.functorInstance . apInstance
 
 point :: Applicative m -> a -> m a
 point =
