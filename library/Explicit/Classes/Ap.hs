@@ -18,13 +18,13 @@ map =
 
 map2 :: Ap m -> (a -> b -> c) -> (m a -> m b -> m c)
 map2 =
-  \x aToBToC mA mB -> ap x (map x aToBToC mA) mB
+  \apInstance aToBToC mA mB -> ap apInstance (map apInstance aToBToC mA) mB
 
 map3 :: Ap m -> (a -> b -> c -> d) -> (m a -> m b -> m c -> m d)
 map3 =
-  \x aToBToCToD mA mB mC ->
+  \apInstance aToBToCToD mA mB mC ->
     let
-      mBToCToD = map x aToBToCToD mA
-      mCToD = ap x mBToCToD mB
-      mD = ap x mCToD mC
+      mBToCToD = map apInstance aToBToCToD mA
+      mCToD = ap apInstance mBToCToD mB
+      mD = ap apInstance mCToD mC
       in mD
