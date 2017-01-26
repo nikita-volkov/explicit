@@ -56,5 +56,5 @@ library
     Explicit.Instances.IO
     Explicit.Instances.Maybe
   build-depends:
-    base-prelude == 0.1.*,
-    base >= 4.6 && < 4.9
+    base-prelude < 2,
+    base >= 4.6 && < 5
