@@ -30,13 +30,8 @@ map =
 
 map2 :: Applicative m -> (a -> b -> c) -> (m a -> m b -> m c)
 map2 =
-  \x aToBToC mA mB -> ap x (map x aToBToC mA) mB
+  Ap.map2 . apInstance
 
 map3 :: Applicative m -> (a -> b -> c -> d) -> (m a -> m b -> m c -> m d)
 map3 =
-  \x aToBToCToD mA mB mC ->
-    let
-      mBToCToD = map x aToBToCToD mA
-      mCToD = ap x mBToCToD mB
-      mD = ap x mCToD mC
-      in mD
+  Ap.map3 . apInstance
