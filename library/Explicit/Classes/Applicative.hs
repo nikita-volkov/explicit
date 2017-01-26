@@ -7,19 +7,11 @@ import qualified Explicit.Classes.Ap as Ap
 
 
 data Applicative m =
-  Applicative !(Functor.Functor m) !(Point.Point m) !(Ap.Ap m)
-
-functorInstance :: Applicative m -> Functor.Functor m
-functorInstance =
-  \(Applicative x _ _) -> x
-
-pointInstance :: Applicative m -> Point.Point m
-pointInstance =
-  \(Applicative _ x _) -> x
-
-apInstance :: Applicative m -> Ap.Ap m
-apInstance =
-  \(Applicative _ _ x) -> x
+  Applicative {
+    functorInstance :: Functor.Functor m,
+    pointInstance :: Point.Point m,
+    apInstance :: Ap.Ap m
+  }
 
 point :: Applicative m -> a -> m a
 point =
