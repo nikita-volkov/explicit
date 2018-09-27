@@ -1,35 +1,43 @@
 module Explicit.Instances.IO where
 
-import Explicit.Prelude
-import qualified Explicit.Classes.Functor as Functor
-import qualified Explicit.Classes.Ap as Ap
-import qualified Explicit.Classes.Applicative as Applicative
-import qualified Explicit.Classes.Monad as Monad
-import qualified Explicit.Classes.Semigroup as Semigroup
-import qualified Explicit.Operations.IO as IO
+import Explicit.Prelude hiding (Functor, Applicative, Alternative, Monad, Semigroup, Monoid)
+import Explicit.Classes.Types
+import qualified Explicit.Prelude as Prelude
+import qualified Explicit.Operations.IO as Operations
+import qualified Explicit.Classes.Constructors.Extend as Extend
+import qualified Explicit.Classes.Constructors.Apply as Apply
+import qualified Explicit.Classes.Accessors.Apply as Apply
 
 
-functor :: Functor.Functor IO
-functor =
-  Functor.Functor IO.map
+sequentialSemigroup :: Semigroup a -> Semigroup (IO a)
+sequentialSemigroup (Semigroup append) = Semigroup (Apply.map2 sequentialApply append)
 
-joinMap :: Monad.JoinMap IO
-joinMap =
-  Monad.JoinMap IO.joinMap
+concurrentSemigroup :: Semigroup a -> Semigroup (IO a)
+concurrentSemigroup (Semigroup append) = Semigroup (Apply.map2 concurrentApply append)
 
-sequentialAp :: Ap.Ap IO
-sequentialAp =
-  Ap.Ap functor IO.sequentialAp
+sequentialApply :: Apply IO
+sequentialApply = Apply.ap functor Operations.apSequentially
 
-concurrentAp :: Ap.Ap IO
-concurrentAp =
-  Ap.Ap functor IO.concurrentAp
+concurrentApply :: Apply IO
+concurrentApply = Apply.ap functor Operations.apConcurrently
 
-sequentialSemigroup :: Semigroup.Semigroup a -> Semigroup.Semigroup (IO a)
-sequentialSemigroup =
-  Ap.map2 sequentialAp
+functor :: Functor IO
+functor = Functor Operations.map
 
-concurrentSemigroup :: Semigroup.Semigroup a -> Semigroup.Semigroup (IO a)
-concurrentSemigroup =
-  Ap.map2 concurrentAp
+apply :: Apply IO
+apply = Apply functor (Prelude.<*>) (Prelude.*>) (Prelude.<*) (Prelude.liftA2)
 
+pointed :: Pointed IO
+pointed = Pointed Prelude.return
+
+applicative :: Applicative IO
+applicative = Applicative pointed apply
+
+bind :: Bind IO
+bind = Bind apply Prelude.join (Prelude.>>=)
+
+monad :: Monad IO
+monad = Monad applicative bind
+
+concurrentExtend :: Extend IO
+concurrentExtend = Extend.duplicated functor Operations.fork
