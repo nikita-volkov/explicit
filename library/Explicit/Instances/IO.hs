@@ -1,6 +1,6 @@
 module Explicit.Instances.IO where
 
-import Explicit.Prelude hiding (Functor, Applicative, Alternative, Monad, Semigroup, Monoid)
+import Explicit.Prelude hiding (Functor, Applicative, Alternative, Monad, Semigroup, Monoid, Alt)
 import Explicit.Classes.Types
 import qualified Explicit.Prelude as Prelude
 import qualified Explicit.Operations.IO as Operations
@@ -41,3 +41,6 @@ monad = Monad applicative bind
 
 concurrentExtend :: Extend IO
 concurrentExtend = Extend.duplicated functor Operations.fork
+
+concurrentAlt :: Alt IO
+concurrentAlt = Alt Operations.compete
