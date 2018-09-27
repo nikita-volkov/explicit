@@ -1,6 +1,6 @@
 module Explicit.Classes.Applicative where
 
-import Explicit.Prelude
+import Explicit.Prelude hiding (Applicative(..))
 import qualified Explicit.Classes.Functor as Functor
 import qualified Explicit.Classes.Point as Point
 import qualified Explicit.Classes.Ap as Ap

@@ -2,7 +2,7 @@
 -- <https://hackage.haskell.org/package/semigroupoids-5.0.0.3/docs/Data-Functor-Apply.html>
 module Explicit.Classes.Ap where
 
-import Explicit.Prelude
+import Explicit.Prelude hiding (ap, map, Functor(..))
 import qualified Explicit.Classes.Functor as Functor; import Explicit.Classes.Functor (Functor)
 
 

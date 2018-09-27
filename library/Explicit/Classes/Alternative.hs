@@ -1,6 +1,6 @@
 module Explicit.Classes.Alternative where
 
-import Explicit.Prelude
+import Explicit.Prelude hiding (Alternative(..))
 import qualified Explicit.Classes.Functor as Functor
 import qualified Explicit.Classes.Applicative as Applicative
 import qualified Explicit.Classes.Alt as Alt

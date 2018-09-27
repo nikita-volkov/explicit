@@ -1,23 +1,23 @@
 module Explicit.Operations.IO where
 
-import Explicit.Prelude
-import qualified BasePrelude as Base
+import Explicit.Prelude hiding (map)
+import qualified Explicit.Prelude as Prelude
 
 
 duplicate :: IO a -> IO (IO a)
 duplicate =
   \ioA ->
-    Base.newEmptyMVar & 
-    joinMap (\var -> Base.forkIO (ioA & joinMap (putMVar var)) & 
+    newEmptyMVar & 
+    joinMap (\var -> forkIO (ioA & joinMap (putMVar var)) & 
     map (const (takeMVar var)))
 
 map :: (a -> b) -> IO a -> IO b
 map =
-  Base.fmap
+  fmap
 
 joinMap :: (a -> IO b) -> IO a -> IO b
 joinMap =
-  (Base.=<<)
+  (Prelude.=<<)
 
 sequentialAp :: IO (a -> b) -> IO a -> IO b
 sequentialAp = 

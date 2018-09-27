@@ -1,6 +1,6 @@
 module Explicit.Classes.Monad where
 
-import Explicit.Prelude
+import Explicit.Prelude hiding (Monad(..), map)
 import qualified Explicit.Classes.Functor as Functor
 import qualified Explicit.Classes.Point as Point
 import qualified Explicit.Classes.Ap as Ap

@@ -3,7 +3,6 @@
 module Explicit.Operations where
 
 import Explicit.Prelude
-import qualified BasePrelude as Base
 
 
 type Append a =
