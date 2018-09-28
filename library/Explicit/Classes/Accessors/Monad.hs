@@ -5,6 +5,9 @@ import Explicit.Classes.Types
 import qualified Explicit.Classes.Accessors.Applicative as Applicative
 
 
+pointed :: Monad m -> Pointed m
+pointed = Applicative.pointed . applicative
+
 functor :: Monad m -> Functor m
 functor = Applicative.functor . applicative
 
