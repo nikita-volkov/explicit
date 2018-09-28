@@ -21,22 +21,24 @@ library
   default-extensions: ApplicativeDo, Arrows, BangPatterns, ConstraintKinds, DataKinds, DefaultSignatures, DeriveDataTypeable, DeriveFoldable, DeriveFunctor, DeriveGeneric, DeriveTraversable, DuplicateRecordFields, EmptyDataDecls, FlexibleContexts, FlexibleInstances, FunctionalDependencies, GADTs, GeneralizedNewtypeDeriving, InstanceSigs, LambdaCase, LiberalTypeSynonyms, MagicHash, MultiParamTypeClasses, MultiWayIf, NoImplicitPrelude, NoMonomorphismRestriction, OverloadedLabels, OverloadedLists, OverloadedStrings, PartialTypeSignatures, PatternGuards, ParallelListComp, QuasiQuotes, RankNTypes, RecordWildCards, ScopedTypeVariables, StandaloneDeriving, TemplateHaskell, TupleSections, TypeApplications, TypeFamilies, TypeOperators, UnboxedTuples
   default-language: Haskell2010
   exposed-modules:
-    Explicit.Classes.Types
-    Explicit.Classes.Constructors.Functor
-    Explicit.Classes.Constructors.Extend
-    Explicit.Classes.Constructors.Apply
-    Explicit.Classes.Constructors.Bind
-    Explicit.Classes.Constructors.Semigroup
-    Explicit.Classes.Accessors.Functor
-    Explicit.Classes.Accessors.Extend
-    Explicit.Classes.Accessors.Apply
-    Explicit.Classes.Accessors.Semigroup
-    Explicit.Classes.Accessors.Pointed
-    Explicit.Classes.Accessors.Applicative
     Explicit.Classes.Accessors.Alt
     Explicit.Classes.Accessors.Alternative
-    Explicit.Classes.Accessors.Monad
+    Explicit.Classes.Accessors.Applicative
+    Explicit.Classes.Accessors.Apply
     Explicit.Classes.Accessors.Bind
+    Explicit.Classes.Accessors.Extend
+    Explicit.Classes.Accessors.Functor
+    Explicit.Classes.Accessors.Monad
+    Explicit.Classes.Accessors.Pointed
+    Explicit.Classes.Accessors.Profunctor
+    Explicit.Classes.Accessors.Semigroup
+    Explicit.Classes.Constructors.Apply
+    Explicit.Classes.Constructors.Bind
+    Explicit.Classes.Constructors.Extend
+    Explicit.Classes.Constructors.Functor
+    Explicit.Classes.Constructors.Semigroup
+    Explicit.Classes.Constructors.Strong
+    Explicit.Classes.Types
     Explicit.Instances.IO
   other-modules:
     Explicit.Prelude

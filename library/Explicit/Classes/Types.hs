@@ -66,3 +66,60 @@ data Extend m = Extend
   (forall a b. (m a -> b) -> m a -> m b)
 
 data Comonad m = Comonad (Copointed m) (Extend m)
+
+
+-- * Profunctors
+-------------------------
+
+data Profunctor p = Profunctor
+  (forall a b c d. (a -> b) -> (c -> d) -> p b c -> p a d)
+  (forall a b c. (a -> b) -> p b c -> p a c)
+  (forall a b c. (b -> c) -> p a b -> p a c)
+
+data Strong p = Strong
+  (Profunctor p)
+  (forall a b c. p a b -> p (a, c) (b, c))
+  (forall a b c. p a b -> p (c, a) (c, b))
+
+data Choice p = Choice
+  (Profunctor p)
+  (forall a b c. p a b -> p (Either a c) (Either b c))
+  (forall a b c. p a b -> p (Either c a) (Either c b))
+
+
+-- * Categories
+-------------------------
+
+newtype Semigroupoid p = Semigroupoid (forall a b c. p b c -> p a b -> p a c)
+
+data Category p = Category
+  (Semigroupoid p)
+  (forall a. p a a)
+
+data Arrow p = Arrow
+  (Category p)
+  (Strong p)
+  (forall a b. (a -> b) -> p a b)
+  (forall a b c d. p a b -> p c d -> p (a, c) (b, d))
+
+data ArrowZero p = ArrowZero
+  (Arrow p)
+  (forall a b. p a b)
+
+data ArrowPlus p = ArrowPlus
+  (ArrowZero p)
+  (forall a b. p a b -> p a b -> p a b)
+
+data ArrowChoice p = ArrowChoice
+  (Arrow p)
+  (Choice p)
+  (forall a b c d. p a b -> p c d -> p (Either a c) (Either b d))
+  (forall a b c. p a c -> p b c -> p (Either a b) c)
+
+data ArrowApply p = ArrowApply
+  (Arrow p)
+  (forall a b. p (p a b, a) b)
+
+data ArrowLoop p = ArrowLoop
+  (Arrow p)
+  (forall a b c. p (a, c) (b, c) -> p a b)
