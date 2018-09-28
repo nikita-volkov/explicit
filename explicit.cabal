@@ -1,6 +1,8 @@
 name: explicit
 version: 0.1
 synopsis: Experimental API of explicit typeclasses
+description:
+  Amongst other things this makes the typeclasses first-class citizens.
 category: Control
 homepage: https://github.com/nikita-volkov/explicit
 bug-reports: https://github.com/nikita-volkov/explicit/issues
