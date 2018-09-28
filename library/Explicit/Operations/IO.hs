@@ -45,5 +45,3 @@ apSequentially = \ ioAToB ioA -> joinMap (\ aToB -> map aToB ioA) ioAToB
 
 apConcurrently :: IO (a -> b) -> IO a -> IO b
 apConcurrently = \ ioAToB ioA -> joinMap (\ ioAToB -> apSequentially ioAToB ioA) (fork ioAToB)
-
-
