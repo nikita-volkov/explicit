@@ -32,6 +32,7 @@ library
     Explicit.Classes.Accessors.Pointed
     Explicit.Classes.Accessors.Profunctor
     Explicit.Classes.Accessors.Semigroup
+    Explicit.Classes.Constructors.Alternative
     Explicit.Classes.Constructors.Apply
     Explicit.Classes.Constructors.Bind
     Explicit.Classes.Constructors.Extend

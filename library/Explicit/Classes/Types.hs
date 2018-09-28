@@ -1,6 +1,6 @@
 module Explicit.Classes.Types where
 
-import Explicit.Prelude (Either, Void)
+import Explicit.Prelude (Either, Void, NonEmpty)
 
 
 -- * Monoids
@@ -27,14 +27,18 @@ data Apply m = Apply
 
 data Applicative m = Applicative (Pointed m) (Apply m)
 
-newtype Alt m = Alt (forall a. m a -> m a -> m a)
-
 data Bind m = Bind
   (Apply m)
   (forall a. m (m a) -> m a)
   (forall a b. m a -> (a -> m b) -> m b)
 
 data Monad m = Monad (Applicative m) (Bind m)
+
+data Alt m = Alt (Functor m) (forall a. m a -> m a -> m a)
+
+data Plus m = Plus (Alt m) (forall a. m a)
+
+data Alternative m = Alternative (Applicative m) (Plus m) (forall a. m a -> m (NonEmpty a)) (forall a. m a -> m [a])
 
 
 -- * Contravariant functors

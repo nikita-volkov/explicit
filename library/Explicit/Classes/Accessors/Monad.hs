@@ -1,5 +1,18 @@
 module Explicit.Classes.Accessors.Monad where
 
-import Explicit.Prelude hiding (Monad(..), map)
+import Explicit.Prelude ((.))
 import Explicit.Classes.Types
+import qualified Explicit.Classes.Accessors.Applicative as Applicative
 
+
+functor :: Monad m -> Functor m
+functor = Applicative.functor . applicative
+
+apply :: Monad m -> Apply m
+apply = Applicative.apply . applicative
+
+applicative :: Monad m -> Applicative m
+applicative (Monad applicative _) = applicative
+
+bind :: Monad m -> Bind m
+bind (Monad _ bind) = bind

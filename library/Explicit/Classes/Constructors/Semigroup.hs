@@ -8,4 +8,4 @@ import Explicit.Classes.Types
 Lift alt into semigroup.
 -}
 alt :: Alt m -> Semigroup (m a)
-alt (Alt append) = Semigroup append
+alt (Alt _ assoc) = Semigroup assoc

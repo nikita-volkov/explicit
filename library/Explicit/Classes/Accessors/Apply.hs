@@ -8,6 +8,9 @@ import qualified Explicit.Classes.Accessors.Functor as Functor
 functor :: Apply m -> Functor m
 functor (Apply functor _ _ _ _) = functor
 
+ap :: Apply m -> m (a -> b) -> m a -> m b
+ap (Apply _ ap _ _ _) = ap
+
 map :: Apply m -> (a -> b) -> (m a -> m b)
 map = Functor.map . functor
 
